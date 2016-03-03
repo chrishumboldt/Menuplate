@@ -1,4 +1,4 @@
-# Menu
+# Menuplate
 A Javascript menu component.
 
 ## Getting Started

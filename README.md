@@ -89,7 +89,7 @@ See an advanced example below with options as per the above.
 <a href id="menu-trigger" data-menu-link="#menu-example">Open Navigation</a>
 <div id="menu-example">
    <ul>
-      <li><h6>Navigation</h6></li>
+      <li><h6>Menu</h6></li>
       <li><a href="#">Link One</a></li>
       <li><a href="#">Link Two</a></li>
       <li><a href="#">Link Three</a></li>

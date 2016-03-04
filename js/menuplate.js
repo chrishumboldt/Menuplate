@@ -254,7 +254,7 @@ var menuplateComponent = function($this, $option, tool) {
 
 		function menuClose() {
 			tool.eventRemove(window, 'resize', menuClose);
-			if (web.exists(document.querySelector('.mnp.mnp-display'))) {
+			if (tool.exists(document.querySelector('.mnp.mnp-display'))) {
 				tool.classRemove(document.querySelector('.mnp.mnp-display'), 'mnp-display');
 			}
 			tool.classRemove(tool.element.html, 'mnp-reveal');

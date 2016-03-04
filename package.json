@@ -1,6 +1,6 @@
 {
 	"name": "menuplate",
-	"version": "1.3.0",
+	"version": "1.0.1",
 	"description": "A Javascript menu component.",
 	"main": "index.html",
 	"repository": {

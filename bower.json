@@ -1,32 +1,20 @@
 {
 	"name": "menuplate",
-	"version": "1.0.1",
-	"homepage": "https://github.com/chrishumboldt/Menuplate",
 	"authors": [
 		"Chris Humboldt <chrismodem@gmail.com>"
 	],
 	"description": "A navigation component.",
-	"main": ["js/min/menuplate.js", "css/menuplate.css"],
+	"main": ["js/menuplate.min.js", "css/menuplate.min.css"],
 	"keywords": [
-		"Menu",
+		"Webplate",
 		"Component",
-		"Javascript",
-		"Webplate"
+		"Menu",
+		"Javascript"
 	],
 	"license": "Apache-2.0",
 	"ignore": [
 		"**/.*",
-		"node_modules",
-		"bower_components",
-		"test",
-		"tests",
-		"gulpfile.js",
-		"package.json",
 		"index.html",
 		"bower.json",
-		"css/demo.css",
-		"js/demo.js",
-		"js/min/demo.js",
-		"sass"
 	]
 }

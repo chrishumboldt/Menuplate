@@ -7,35 +7,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
     <!-- Title -->
     <title>Menuplate Component</title>
-    <!-- Styles -->
-    <link href="css/menuplate.css" rel="stylesheet" type="text/css">
-    <link href="css/demo.css" rel="stylesheet" type="text/css">
+    <link href="bower_components/webplate-demo/css/demo.min.css" rel="stylesheet" type="text/css">
+    <link href="css/menuplate.min.css" rel="stylesheet" type="text/css">
 
 </head>
 <body>
 
-   <div class="heading">
-      <div class="container"><h2>Menuplate Component</h2></div>
-   </div>
-   <div class="container">
-      <h4>Getting Started</h4>
-      <p>You can either download a copy of the source files or install Menuplate via Bower.</p>
+	<div id="web-demo-message">
+		You need to run "bower install" and include the neccessary demo files in order to view this file.
+	</div>
+
+	<div id="web-demo" style="display:none;">
+	   <div class="heading">
+	      <div class="container"><h2>Menuplate Component</h2></div>
+	   </div>
+	   <div class="container">
+	      <h4>Getting Started</h4>
+	      <p>You can either download a copy of the source files or install Menuplate via Bower.</p>
 <pre class="prettyprint linenums">
 bower install menuplate
 </pre>
-      <p>Start by including the necessary files.</p>
+      	<p>Start by including the necessary files.</p>
 <pre class="prettyprint linenums">
 &lt;head&gt;
-    &lt;link href=&quot;css/menuplate.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot;&gt;
+    &lt;link href=&quot;css/menuplate.min.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot;&gt;
 &lt;/head&gt;
 &lt;body&gt;
     /* Your content goes here */
-    &lt;script src=&quot;js/min/menuplate.js&quot;>&lt;/script&gt;
+    &lt;script src=&quot;js/menuplate.min.js&quot;>&lt;/script&gt;
 &lt;/body&gt;
 </pre>
-      <br>
-      <h4>HTML Example</h4>
-      <p>There are three different menus types and all use the same HTML. You require the trigger that will open the menu and the actual menu list. See an example below.</p>
+	      <br>
+	      <h4>HTML Example</h4>
+	      <p>There are three different menus types and all use the same HTML. You require the trigger that will open the menu and the actual menu list. See an example below.</p>
 <pre class="prettyprint linenums">
 &lt;a id="menu-trigger" href="menu-example">Open Menu&lt;/a&gt;
 &lt;div id="menu-example"&gt;
@@ -49,9 +53,9 @@ bower install menuplate
    &lt;/ul&gt;
 &lt;/div&gt;
 </pre>
-      <br>
-      <h4>Execute Via Javascript</h4>
-      <p>Use the following example to trigger the menu component.</p>
+	      <br>
+	      <h4>Execute Via Javascript</h4>
+	      <p>Use the following example to trigger the menu component.</p>
 <pre class="prettyprint linenums">
 &lt;script&gt;
 new menuplate({
@@ -59,57 +63,58 @@ new menuplate({
 });
 &lt;/script&gt;
 </pre>
-      <br>
-      <h4>Working Example</h4>
-      <a id="menu-trigger-1" href="#menu-example-1" class="link">Open Slide Menu</a>
-      <div id="menu-example-1">
-         <ul>
-            <li><h6>Slide Menu</h6></li>
-            <li><a href="#">Link One</a></li>
-            <li><a href="#">Link Two</a></li>
-            <li><a href="#">Link Three</a></li>
-            <li><a href="#">Link Four</a></li>
-            <li><a href="#">Link Five</a></li>
-         </ul>
-      </div><br>
-      <a id="menu-trigger-2" href="#menu-example-2" class="link">Open Fullscreen Menu</a>
-      <div id="menu-example-2">
-         <ul>
-            <li><h6>Fullscreen Menu</h6></li>
-            <li><a href="#">Link One</a></li>
-            <li><a href="#">Link Two</a></li>
-            <li><a href="#">Link Three</a></li>
-            <li><a href="#">Link Four</a></li>
-            <li><a href="#">Link Five</a></li>
-         </ul>
-      </div><br>
-      <a class="menu-contextual-test link" href="#menu-example-contextual" class="link">Open Contextual Menu</a>
-      <div id="menu-example-contextual">
-         <ul>
-            <li><a href="#">Link One</a></li>
-            <li><a href="#">Link Two</a></li>
-            <li><a href="#">Link Three</a></li>
-            <li><a href="#">Link Four</a></li>
-         </ul>
-      </div>
-      <br><br>
-      <h4>Detailed Documentation</h4>
-      <p>For a more detailed look into the available options, you can read the documentation at <a target="_blank" href="https://github.com/chrishumboldt/Menuplate" class="link">https://github.com/chrishumboldt/Menuplate</a></p>
-   </div>
+	      <br>
+	      <h4>Working Example</h4>
+	      <a id="menu-trigger-1" href="#menu-example-1" class="link">Open Slide Menu</a>
+	      <div id="menu-example-1">
+	         <ul>
+	            <li><h6>Slide Menu</h6></li>
+	            <li><a href="#">Link One</a></li>
+	            <li><a href="#">Link Two</a></li>
+	            <li><a href="#">Link Three</a></li>
+	            <li><a href="#">Link Four</a></li>
+	            <li><a href="#">Link Five</a></li>
+	         </ul>
+	      </div><br>
+	      <a id="menu-trigger-2" href="#menu-example-2" class="link">Open Fullscreen Menu</a>
+	      <div id="menu-example-2">
+	         <ul>
+	            <li><h6>Fullscreen Menu</h6></li>
+	            <li><a href="#">Link One</a></li>
+	            <li><a href="#">Link Two</a></li>
+	            <li><a href="#">Link Three</a></li>
+	            <li><a href="#">Link Four</a></li>
+	            <li><a href="#">Link Five</a></li>
+	         </ul>
+	      </div><br>
+	      <a class="menu-contextual-test link" href="#menu-example-contextual" class="link">Open Contextual Menu</a>
+	      <div id="menu-example-contextual">
+	         <ul>
+	            <li><a href="#">Link One</a></li>
+	            <li><a href="#">Link Two</a></li>
+	            <li><a href="#">Link Three</a></li>
+	            <li><a href="#">Link Four</a></li>
+	         </ul>
+	      </div>
+	      <br><br>
+	      <h4>Detailed Documentation</h4>
+	      <p>For a more detailed look into the available options, you can read the documentation at <a target="_blank" href="https://github.com/chrishumboldt/Menuplate" class="link">https://github.com/chrishumboldt/Menuplate</a></p>
+	   </div>
 
-   <footer><div class="container"><div class="col-double">
-		<div class="left">
-			Made by <a href="http://chrishumboldt.com" target="_blank">Chris Humboldt</a>
-		</div>
-		<div class="right">
-			A <a href="http://getwebplate.com" target="_blank">Webplate Project</a>&nbsp;&nbsp;
-			Want updates? <a href="http://twitter.com/webplatetweets" target="_blank">@webplatetweets</a>
-		</div>
-	</div></div></footer>
+	   <footer><div class="container"><div class="col-double">
+			<div class="left">
+				Made by <a href="http://chrishumboldt.com" target="_blank">Chris Humboldt</a>
+			</div>
+			<div class="right">
+				A <a href="http://getwebplate.com" target="_blank">Webplate Project</a>&nbsp;&nbsp;
+				Want updates? <a href="http://twitter.com/webplatetweets" target="_blank">@webplatetweets</a>
+			</div>
+		</div></div></footer>
+	</div>
 
    <!-- Scripts -->
-   <script src="js/menuplate.js"></script>
-   <script src="js/min/demo.js"></script>
+   <script src="bower_components/webplate-demo/js/demo.min.js"></script>
+   <script src="js/menuplate.min.js"></script>
    <script>
 	$menuplateDefault.reveal = 'left';
    new menuplate({

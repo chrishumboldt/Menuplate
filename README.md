@@ -12,11 +12,11 @@ Start by including the necessary files.
 
 ```
 <head>
-	<link href="css/menuplate.css" rel="stylesheet" type="text/css">
+	<link href="css/menuplate.min.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 	/* Your content goes here */
-	<script src="js/min/menuplate.js"></script>
+	<script src="js/menuplate.min.js"></script>
 </body>
 ```
 

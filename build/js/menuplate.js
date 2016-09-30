@@ -2,7 +2,7 @@
  * File: js/menuplate.js
  * Type: Javascript component file
  * Author: Chris Humboldt
- */
+**/
 
 // Table of contents
 // Defaults

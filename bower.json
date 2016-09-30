@@ -15,6 +15,10 @@
 	"ignore": [
 		"**/.*",
 		"index.html",
-		"bower.json",
-	]
+		"bower.json"
+	],
+	"devDependencies": {
+		"blueplate": "^2.0.0",
+		"webplate-demo": "^1.0.0"
+	}
 }

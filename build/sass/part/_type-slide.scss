@@ -1,30 +1,47 @@
-/**
-* File: sass/component/_type-slide.scss
-* Type: SASS component
-* Author: Chris Humboldt
+/*
+Author: Chris Humboldt
 */
 
+$menu-width: 275px !default;
+$menu-width-large: 340px !default;
+
 // Mixins
-@mixin menuplate-type-slide() {
-	.mnp._t-slide {
-	   @include menuplate-type-slide-styles();
-	   @include menuplate-type-slide-styles-reveal();
+@mixin rocket-menu-slide() {
+	.rocket-menu._t-slide {
+	   @include rocket-menu-slide-styles();
+	   @include rocket-menu-slide-styles-reveal();
 	}
 }
-@mixin menuplate-type-slide-styles() {
+
+@mixin rocket-menu-slide-styles() {
+   // @include show;
    @include block($menu-width, 100%);
    @include overflow(auto, vertical);
-   @include background-color($nav-background);
+   @include background-color($white);
    @include list-style(none);
-   @include level(-100);
-   @include visibility(hidden);
-   &.mnp-ready {
-      @include level(1001);
-      @include visibility(visible);
-   }
+   @include level(1001);
+   @include visibility(visible);
+   @include opacity(1);
+
    @include breakpoint(large) {
       @include width($menu-width-large);
    }
+
+   a.rme-close-link {
+      @include position(absolute, top 0px right 16px);
+      @include height(44px);
+      @include line-height(44px);
+      @include text-align(center);
+      @include text-colour($grey-blue-light);
+      @include text-decoration(none);
+      @include text-size($size-minor);
+      @include animate(color);
+      .rocket-no-touch &:hover {
+         @include text-colour($grey-blue-dark);
+         @include cursor(pointer);
+      }
+   }
+
    ul {
       @include spacing-no();
       @include list-style(none);
@@ -54,25 +71,21 @@
             @include text-colour($grey);
             @include text-size($size-base);
          }
-         .mnp-no-touch &:hover {
+         .rocket-no-touch &:hover {
             @include text-colour($red);
          }
       }
    }
 }
-@mixin menuplate-type-slide-styles-reveal() {
+
+@mixin rocket-menu-slide-styles-reveal() {
    @include animate(all, 0.3s);
+
    // Directions
    &._r-left {
       @include position(fixed, top 0 left 0);
       @include transform-translate-3d(-$menu-width, 0px, 0px);
-      @include breakpoint(large) {
-         @include transform-translate-3d(-$menu-width-large, 0px, 0px);
-      }
-   }
-   &._r-top {
-      @include position(fixed, top 0 left 0);
-      @include transform-translate-3d(-$menu-width, 0px, 0px);
+
       @include breakpoint(large) {
          @include transform-translate-3d(-$menu-width-large, 0px, 0px);
       }
@@ -80,19 +93,14 @@
    &._r-right {
       @include position(fixed, top 0 right 0);
       @include transform-translate-3d($menu-width, 0px, 0px);
+
       @include breakpoint(large) {
          @include transform-translate-3d($menu-width-large, 0px, 0px);
       }
    }
-   &._r-bottom {
-      @include position(fixed, top 0 left 0);
-      @include transform-translate-3d(-$menu-width, 0px, 0px);
-      @include breakpoint(large) {
-         @include transform-translate-3d(-$menu-width-large, 0px, 0px);
-      }
-   }
+
    // Reveal
-   &.mnp-display {
+   &._reveal {
       @include transform-translate-3d(0px, 0px, 0px);
    }
 }

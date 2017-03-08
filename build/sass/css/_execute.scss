@@ -1,12 +1,9 @@
-/**
- * File: sass/css/_execte.scss
- * Type: SASS execute
- * Author: Chris Humboldt
- */
+/*
+Author: Chris Humboldt
+*/
 
-@mixin menuplate-css {
-   @include menuplate-overlay();
-	@include menuplate-type-contextual();
-   @include menuplate-type-fullscreen();
-   @include menuplate-type-slide();
+@mixin rocket-menu-css() {
+   @include rocket-menu-setup;
+	@include rocket-menu-contextual;
+   @include rocket-menu-slide;
 }

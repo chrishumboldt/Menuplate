@@ -1,0 +1,17 @@
+/*
+Author: Chris Humboldt
+*/
+
+@mixin rocket-menu-setup() {
+   .rocket-menu {
+      @include hide;
+      @include level(1001);
+      @include opacity(0);
+		@include animate(all, 0.4s);
+
+      html.rme-reveal & {
+         @include show;
+         @include opacity(1);
+      }
+   }
+}

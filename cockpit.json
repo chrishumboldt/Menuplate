@@ -1,0 +1,11 @@
+{
+   "build": [{
+      "name": "menu",
+      "css": [
+         "~/menu.scss"
+      ],
+      "js": [
+         "~/menu.js"
+      ]
+   }]
+}

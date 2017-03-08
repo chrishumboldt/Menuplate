@@ -2,47 +2,49 @@
 <html>
 <head>
 
-   <!-- Meta setup -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-    <!-- Title -->
-    <title>Menuplate Component</title>
-    <link href="bower_components/webplate-demo/css/demo.min.css" rel="stylesheet" type="text/css">
-    <link href="css/menuplate.min.css" rel="stylesheet" type="text/css">
+    <title>Rocket Menu Module</title>
+
+    <link href="node_modules/rocket-demo/css/demo.min.css" rel="stylesheet" type="text/css">
+    <link href="css/menu.min.css" rel="stylesheet" type="text/css">
 
 </head>
 <body>
 
-	<div id="web-demo-message">
+	<div id="rocket-demo-message">
 		You need to run "bower install" and include the neccessary demo files in order to view this file.
 	</div>
 
-	<div id="web-demo" style="display:none;">
+	<div id="rocket-demo" style="display:none;">
 	   <div class="heading">
-	      <div class="container"><h2>Menuplate Component</h2></div>
+	      <div class="container"><h2>Rocket Menu Module</h2></div>
 	   </div>
 	   <div class="container">
 	      <h4>Getting Started</h4>
-	      <p>You can either download a copy of the source files or install Menuplate via Bower.</p>
+         <p>Install via NPM.</p>
 <pre class="prettyprint linenums">
-bower install menuplate
+npm install rocket-menu
 </pre>
+         <p class="note">Note that this module has a dependency <a href="https://github.com/chrishumboldt/Rocket-Tools" class="link" target="_blank">Rocket Tools (21kb)</a> which will automatically be installed as well.</p>
       	<p>Start by including the necessary files.</p>
 <pre class="prettyprint linenums">
 &lt;head&gt;
-    &lt;link href=&quot;css/menuplate.min.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot;&gt;
+    &lt;link href=&quot;node_modules/rocket-menu/css/menu.min.css&quot; rel=&quot;stylesheet&quot; type=&quot;text/css&quot;&gt;
 &lt;/head&gt;
 &lt;body&gt;
     /* Your content goes here */
-    &lt;script src=&quot;js/menuplate.min.js&quot;>&lt;/script&gt;
+    &lt;script src=&quot;node_modules/rocket-tools/js/tools.min.js&quot;>&lt;/script&gt;
+    &lt;script src=&quot;node_modules/rocket-menu/js/menu.min.js&quot;>&lt;/script&gt;
 &lt;/body&gt;
 </pre>
 	      <br>
 	      <h4>HTML Example</h4>
 	      <p>There are three different menus types and all use the same HTML. You require the trigger that will open the menu and the actual menu list. See an example below.</p>
 <pre class="prettyprint linenums">
-&lt;a id="menu-trigger" href="menu-example">Open Menu&lt;/a&gt;
-&lt;div id="menu-example"&gt;
+&lt;a id="menu-link">Open Menu&lt;/a&gt;
+
+&lt;div id="menu"&gt;
    &lt;ul&gt;
       &lt;li>&lt;h6&gt;Menu&lt;/h6>&lt;/li&gt;
       &lt;li>&lt;a href=&quot;#&quot;&gt;Link One&lt;/a&gt;&lt;/li&gt;
@@ -58,8 +60,9 @@ bower install menuplate
 	      <p>Use the following example to trigger the menu component.</p>
 <pre class="prettyprint linenums">
 &lt;script&gt;
-new menuplate({
-    selector: &apos;#menu-trigger&apos;
+Rocket.menu({
+   triggers: '#menu-link',
+   target: '#menu'
 });
 &lt;/script&gt;
 </pre>
@@ -113,21 +116,20 @@ new menuplate({
 	</div>
 
    <!-- Scripts -->
-   <script src="bower_components/webplate-demo/js/demo.min.js"></script>
-   <script src="js/menuplate.min.js"></script>
+   <script src="node_modules/rocket-demo/js/demo.min.js"></script>
+   <script src="js/menu.min.js"></script>
    <script>
-	$menuplateDefault.reveal = 'left';
-   new menuplate({
-		selector: '#menu-trigger-1'
-   });
-   new menuplate({
-		selector: '#menu-trigger-2',
-      type: 'fullscreen'
-   });
-   new menuplate({
-		selector: '.menu-contextual-test',
-      type: 'contextual'
-   });
+   // new menuplate({
+	// 	selector: '#menu-trigger-1'
+   // });
+   // new menuplate({
+	// 	selector: '#menu-trigger-2',
+   //    type: 'fullscreen'
+   // });
+   // new menuplate({
+	// 	selector: '.menu-contextual-test',
+   //    type: 'contextual'
+   // });
    </script>
 
 </body>

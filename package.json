@@ -1,0 +1,30 @@
+{
+  "name": "rocket-menu",
+  "version": "2.0.0",
+  "description": "A menu module.",
+  "main": "index.html",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chrishumboldt/menuplate.git"
+  },
+  "keywords": [
+    "Rocket",
+    "Part",
+    "Module",
+    "Javascript",
+    "CSS"
+  ],
+  "author": "Chris Humboldt <chrismodem@gmail.com>",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/chrishumboldt/menuplate/issues"
+  },
+  "homepage": "https://github.com/chrishumboldt/menuplate#readme",
+  "devDependencies": {
+    "rocket-demo": "^2.0.1",
+    "rocket-propel": "^3.0.3"
+  },
+  "dependencies": {
+    "rocket-tools": "^1.13.2"
+  }
+}

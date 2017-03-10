@@ -53,7 +53,7 @@ Use the following example to trigger the menu module.
 
 ```js
 Rocket.menu({
-	triggers: '#menu-trigger',
+   triggers: '#menu-trigger',
    target: '#menu-example'
 });
 ```
@@ -72,7 +72,7 @@ You can also manually execute certain methods once the menu has been initialized
 ```js
 // Initialize a menu
 let menu = Rocket.menu({
-	triggers: '#menu-trigger',
+   triggers: '#menu-trigger',
    target: '#menu-example'
 });
 

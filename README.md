@@ -31,7 +31,7 @@ Start by including the necessary files.
 ```
 
 ## HTML Example
-There are three different menu types and all use the same HTML. You require the trigger that will open the menu and the actual menu list. See an example below.
+There are two different menu types and all use the same HTML. You require the trigger that will open the menu and the actual menu list. See an example below.
 
 ```html
 <a id="menu-trigger" href>Open Menu</a>

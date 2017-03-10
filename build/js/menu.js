@@ -7,16 +7,14 @@ var RockMod_Menu;
 (function (RockMod_Menu) {
     var _RD = Rocket.defaults.menu;
     var reveals = ['_r-left', '_r-right'];
-    var types = ['_t-contextual', '_t-slide'];
+    var types = ['_t-mini', '_t-slide'];
     var menu = {
         close: function (callback) {
             if (callback === void 0) { callback = null; }
             var openMenu = Rocket.dom.element('.rocket-menu._reveal');
             Rocket.classes.remove(Rocket.dom.html, 'rme-reveal');
             if (Rocket.exists(openMenu) && Rocket.is.element(openMenu)) {
-                if (Rocket.has.class(openMenu, '_t-slide')) {
-                    Rocket.overlay.hide();
-                }
+                Rocket.overlay.hide();
                 Rocket.classes.remove(openMenu, '_reveal');
             }
             if (Rocket.is.function(callback)) {
@@ -38,20 +36,30 @@ var RockMod_Menu;
                     event.preventDefault();
                 }
                 menu.close(function () {
-                    if (options.type === 'slide') {
-                        Rocket.overlay.show();
-                    }
+                    Rocket.overlay.show();
                     Rocket.classes.add(Rocket.dom.html, 'rme-reveal');
                     Rocket.classes.add(thisMenu, '_reveal');
                 });
             }
             Rocket.classes.remove(thisMenu, reveals.concat(types));
             switch (options.type) {
-                case 'contextual':
-                    Rocket.classes.add(thisMenu, "_t-" + options.type);
+                case 'mini':
+                    Rocket.classes.add(thisMenu, "rocket-menu _t-" + options.type);
+                    if (!Rocket.exists(thisMenu.querySelector('a.rme-close-link'))) {
+                        var closeUL = document.createElement('ul');
+                        var closeLI = document.createElement('li');
+                        var closeLink = document.createElement('a');
+                        Rocket.classes.add(closeUL, 'close-list');
+                        Rocket.classes.add(closeLink, 'rme-close-link');
+                        closeLink.href = '';
+                        closeLink.innerHTML = options.closeText;
+                        closeLI.appendChild(closeLink);
+                        closeUL.appendChild(closeLI);
+                        thisMenu.appendChild(closeUL);
+                    }
                     break;
                 case 'slide':
-                    Rocket.classes.add(thisMenu, "_t-" + options.type + " _r-" + options.reveal);
+                    Rocket.classes.add(thisMenu, "rocket-menu _t-" + options.type + " _r-" + options.reveal);
                     if (!Rocket.exists(thisMenu.querySelector('a.rme-close-link'))) {
                         var closeLink = document.createElement('a');
                         Rocket.classes.add(closeLink, 'rme-close-link');

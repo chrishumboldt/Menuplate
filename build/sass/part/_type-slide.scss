@@ -14,7 +14,6 @@ $menu-width-large: 340px !default;
 }
 
 @mixin rocket-menu-slide-styles() {
-   // @include show;
    @include block($menu-width, 100%);
    @include overflow(auto, vertical);
    @include background-color($white);

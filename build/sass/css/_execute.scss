@@ -4,6 +4,6 @@ Author: Chris Humboldt
 
 @mixin rocket-menu-css() {
    @include rocket-menu-setup;
-	@include rocket-menu-contextual;
+	@include rocket-menu-mini;
    @include rocket-menu-slide;
 }

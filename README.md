@@ -53,7 +53,7 @@ Use the following example to trigger the menu module.
 
 ```js
 Rocket.menu({
-	trigger: '#menu-trigger',
+	triggers: '#menu-trigger',
    target: '#menu-example'
 });
 ```
@@ -61,10 +61,10 @@ Rocket.menu({
 #### Options
 Name | Default | Options | Description
 ---- | ---- | ---- | ----
-`trigger` | | | Set the element that will trigger the menu.
-`type` | `slide` | `mini` `slide` | This determines the type of menu you want to use.
 `closeText` | `close` | | You can decide what you want the close text to say.
-`reveal` | `left` | `left` `right` | Set the direction from which the menu appears. **NOTE** that this only applies to the slide menu type.
+`reveal` | `left` | `left` `right` | Set the direction from which the menu appears. **NOTE** that this only applies to the
+`triggers` | | | Set the element that will trigger the menu.
+`type` | `slide` | `mini` `slide` | This determines the type of menu you want to use. slide menu type.
 
 #### Methods
 You can also manually execute certain methods once the menu has been initialized.
@@ -72,12 +72,12 @@ You can also manually execute certain methods once the menu has been initialized
 ```js
 // Initialize a menu
 let menu = Rocket.menu({
-	trigger: '#menu-trigger',
+	triggers: '#menu-trigger',
    target: '#menu-example'
 });
 
-// Open the menu
-menu.open();
+// Show the menu
+menu.show();
 
 // Close the menu
 setTimeout(() => {

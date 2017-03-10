@@ -84,6 +84,7 @@ var RockMod_Menu;
                 Rocket.event.add(trigger, 'click', menuShow);
             }
             return {
+                close: menu.close,
                 menu: thisMenu,
                 show: menuShow
             };

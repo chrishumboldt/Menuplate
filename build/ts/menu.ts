@@ -100,6 +100,7 @@ module RockMod_Menu {
          }
 
          return {
+            close: menu.close,
             menu: thisMenu,
             show: menuShow
          }

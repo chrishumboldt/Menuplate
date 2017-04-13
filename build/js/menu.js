@@ -1,20 +1,31 @@
+/*
+Author: Chris Humboldt
+*/
+// Extend Rocket
 Rocket.defaults.menu = {
     closeText: 'close',
     reveal: 'left',
     type: 'slide'
 };
+// Module
 var RockMod_Menu;
 (function (RockMod_Menu) {
+    // Variables
     var _RD = Rocket.defaults.menu;
     var reveals = ['_r-left', '_r-right'];
     var types = ['_t-mini', '_t-slide'];
+    // Functions
     var menu = {
-        close: function (callback) {
+        close: function (callback, overlayHide) {
             if (callback === void 0) { callback = null; }
+            if (overlayHide === void 0) { overlayHide = true; }
             var openMenu = Rocket.dom.element('.rocket-menu._reveal');
             Rocket.classes.remove(Rocket.dom.html, 'rme-reveal');
             if (Rocket.exists(openMenu) && Rocket.is.element(openMenu)) {
-                Rocket.overlay.hide();
+                if (overlayHide) {
+                    Rocket.overlay.hide();
+                }
+                ;
                 Rocket.classes.remove(openMenu, '_reveal');
             }
             if (Rocket.is.function(callback)) {
@@ -27,24 +38,33 @@ var RockMod_Menu;
         setup: function (options) {
             var thisMenu = Rocket.dom.element(options.target);
             var triggers = Rocket.dom.select(options.triggers);
+            // Catch
             if (!Rocket.is.element(thisMenu) || triggers.length < 1 || types.indexOf("_t-" + options.type) < 0) {
                 return false;
             }
+            // Continue
             function menuShow(event) {
                 if (event === void 0) { event = null; }
                 if (event) {
                     event.preventDefault();
                 }
-                menu.close(function () {
-                    Rocket.overlay.show();
-                    Rocket.classes.add(Rocket.dom.html, 'rme-reveal');
-                    Rocket.classes.add(thisMenu, '_reveal');
-                });
+                var openMenu = Rocket.dom.element('.rocket-menu._reveal');
+                if (thisMenu !== openMenu) {
+                    menu.close(function () {
+                        Rocket.overlay.show();
+                        Rocket.classes.add(Rocket.dom.html, 'rme-reveal');
+                        Rocket.classes.add(thisMenu, '_reveal');
+                    }, false);
+                }
+                else {
+                    menu.close();
+                }
             }
             Rocket.classes.remove(thisMenu, reveals.concat(types));
             switch (options.type) {
                 case 'mini':
                     Rocket.classes.add(thisMenu, "rocket-menu _t-" + options.type);
+                    // Close link
                     if (!Rocket.exists(thisMenu.querySelector('a.rme-close-link'))) {
                         var closeUL = document.createElement('ul');
                         var closeLI = document.createElement('li');
@@ -60,6 +80,7 @@ var RockMod_Menu;
                     break;
                 case 'slide':
                     Rocket.classes.add(thisMenu, "rocket-menu _t-" + options.type + " _r-" + options.reveal);
+                    // Close link
                     if (!Rocket.exists(thisMenu.querySelector('a.rme-close-link'))) {
                         var closeLink = document.createElement('a');
                         Rocket.classes.add(closeLink, 'rme-close-link');
@@ -69,6 +90,7 @@ var RockMod_Menu;
                     }
                     break;
             }
+            // Menu links
             var menuLinks = thisMenu.querySelectorAll('a');
             for (var _i = 0, menuLinks_1 = menuLinks; _i < menuLinks_1.length; _i++) {
                 var menuLink = menuLinks_1[_i];
@@ -90,7 +112,9 @@ var RockMod_Menu;
             };
         }
     };
+    // Initialiser
     function init(uOptions) {
+        // Options
         if (!Rocket.is.object(uOptions)) {
             uOptions = {};
         }
@@ -104,6 +128,8 @@ var RockMod_Menu;
         return menu.setup(options);
     }
     RockMod_Menu.init = init;
+    // Menu setup
     menu.globalSetup();
 })(RockMod_Menu || (RockMod_Menu = {}));
+// Bind to Rocket
 Rocket.menu = RockMod_Menu.init;

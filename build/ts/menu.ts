@@ -18,12 +18,12 @@ module RockMod_Menu {
 
    // Functions
    const menu = {
-      close: (callback = null) => {
+      close: (callback = null, overlayHide = true) => {
          let openMenu = Rocket.dom.element('.rocket-menu._reveal');
 
          Rocket.classes.remove(Rocket.dom.html, 'rme-reveal');
          if (Rocket.exists(openMenu) && Rocket.is.element(openMenu)) {
-            Rocket.overlay.hide();
+            if (overlayHide) { Rocket.overlay.hide() };
             Rocket.classes.remove(openMenu, '_reveal');
          }
          if (Rocket.is.function(callback)) { return callback(); }
@@ -42,11 +42,17 @@ module RockMod_Menu {
          function menuShow(event = null) {
             if (event) { event.preventDefault(); }
 
-            menu.close(() => {
-               Rocket.overlay.show();
-               Rocket.classes.add(Rocket.dom.html, 'rme-reveal');
-               Rocket.classes.add(thisMenu, '_reveal');
-            });
+            let openMenu = Rocket.dom.element('.rocket-menu._reveal');
+
+            if (thisMenu !== openMenu) {
+               menu.close(() => {
+                  Rocket.overlay.show();
+                  Rocket.classes.add(Rocket.dom.html, 'rme-reveal');
+                  Rocket.classes.add(thisMenu, '_reveal');
+               }, false);
+            } else {
+               menu.close();
+            }
          }
 
          Rocket.classes.remove(thisMenu, reveals.concat(types));

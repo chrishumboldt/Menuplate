@@ -2,19 +2,20 @@
 Author: Chris Humboldt
 */
 
-$menu-width: 275px !default;
+$menu-width: 300px !default;
 $menu-width-large: 340px !default;
 
 // Mixins
-@mixin rocket-menu-slide() {
-	.rocket-menu._t-slide {
-	   @include rocket-menu-slide-styles();
-	   @include rocket-menu-slide-styles-reveal();
+@mixin mod-menu-slide() {
+	.mod-menu._mod-type-slide {
+	   @include mod-menu-slide-styles();
+	   @include mod-menu-slide-styles-reveal();
 	}
 }
 
-@mixin rocket-menu-slide-styles() {
-   @include block($menu-width, 100%);
+@mixin mod-menu-slide-styles() {
+   @include show;
+   @include size($menu-width, 100%);
    @include overflow(auto, vertical);
    @include background-color($white);
    @include list-style(none);
@@ -26,7 +27,7 @@ $menu-width-large: 340px !default;
       @include width($menu-width-large);
    }
 
-   a.rme-close-link {
+   a.mod-menu-close-link {
       @include position(absolute, top 0px right 16px);
       @include height(44px);
       @include line-height(44px);
@@ -35,6 +36,7 @@ $menu-width-large: 340px !default;
       @include text-decoration(none);
       @include text-size($size-minor);
       @include animate(color);
+
       .rocket-no-touch &:hover {
          @include text-colour($grey-blue-dark);
          @include cursor(pointer);
@@ -44,21 +46,21 @@ $menu-width-large: 340px !default;
    ul {
       @include spacing-no();
       @include list-style(none);
-      @include padding-vertical($space-small);
+      @include padding-v($space-small);
    }
    li {
       h6 {
-         @include display(block);
+         @include show;
          @include spacing-no();
-         @include padding-horizontal($space-base + 4px);
-         @include padding-vertical($space-minor);
+         @include padding-h($space-base + 4px);
+         @include padding-v($space-minor);
          @include text-size($size-slight);
          @include text-weight(500);
       }
       a:not(.button):not([class *= "btn-"]) {
-         @include display(block);
-         @include padding-horizontal($space-base + 4px);
-         @include padding-vertical($space-minor);
+         @include show;
+         @include padding-h($space-base + 4px);
+         @include padding-v($space-minor);
          @include text-decoration(none);
          @include text-colour($black-base);
          @include text-size($size-base);
@@ -66,7 +68,7 @@ $menu-width-large: 340px !default;
          @include animate(color);
          div.icon {
             @include float(left);
-            @include padding-right(12px);
+            @include padding-r(12px);
             @include text-colour($grey);
             @include text-size($size-base);
          }
@@ -77,11 +79,11 @@ $menu-width-large: 340px !default;
    }
 }
 
-@mixin rocket-menu-slide-styles-reveal() {
+@mixin mod-menu-slide-styles-reveal() {
    @include animate(all, 0.3s);
 
    // Directions
-   &._r-left {
+   &._mod-reveal-left {
       @include position(fixed, top 0 left 0);
       @include transform-translate-3d(-$menu-width, 0px, 0px);
 
@@ -89,7 +91,7 @@ $menu-width-large: 340px !default;
          @include transform-translate-3d(-$menu-width-large, 0px, 0px);
       }
    }
-   &._r-right {
+   &._mod-reveal-right {
       @include position(fixed, top 0 right 0);
       @include transform-translate-3d($menu-width, 0px, 0px);
 
@@ -99,7 +101,7 @@ $menu-width-large: 340px !default;
    }
 
    // Reveal
-   &._reveal {
+   &.is-active {
       @include transform-translate-3d(0px, 0px, 0px);
    }
 }

@@ -2,12 +2,12 @@
 Author: Chris Humboldt
 */
 
-@mixin rocket-menu-mini() {
-	.rocket-menu._t-mini {
+@mixin mod-menu-mini() {
+	.mod-menu._mod-type-mini {
       @include show;
 		@include animate(bottom, 0.4s);
-		@include rocket-menu-mini-reveal();
-		@include rocket-menu-mini-styles();
+		@include mod-menu-mini-reveal();
+		@include mod-menu-mini-styles();
 
       ul {
          @include width-max(500px);
@@ -16,50 +16,51 @@ Author: Chris Humboldt
 	}
 }
 
-@mixin rocket-menu-mini-reveal() {
-	&._reveal {
+@mixin mod-menu-mini-reveal() {
+	&.is-active {
 		@include position-set(bottom 0);
-		ul.close-list {
+
+		ul.mod-menu-close-list {
 			@include transform-translate-3d(0px, 0px, 0px);
 		}
 	}
 }
 
-@mixin rocket-menu-mini-styles() {
+@mixin mod-menu-mini-styles() {
    @include position(fixed, bottom -500px left 0);
 	@include padding($space-minor);
-	@include padding-bottom(0px);
+	@include padding-b(0px);
 	@include width(100%);
    @include level(-100);
    @include visibility(hidden);
 
    // Reveal
-   html.rme-reveal &._reveal {
+   html.mod-menu-is-active &.is-active {
       @include visibility(visible);
    }
 
-   &._reveal {
+   &.is-active {
       @include level(1001);
    }
 	ul {
 		@include spacing-no();
-      @include padding-bottom($space-minor);
+      @include padding-b($space-minor);
 		@include width(100%);
 		@include list-style(none);
 		li {
 			@include text-align(center);
-			@include border-top(lighten($grey-blue-light, 10%));
+			@include border-t(lighten($grey-blue-light, 10%));
 			@include background-colour($white);
 
 			&:first-child {
-				@include border-top($white, 0px);
-				@include border-radius-top();
+				@include border-t($white, 0px);
+				@include border-radius-t();
 			}
 			&:last-child {
-				@include border-radius-bottom();
+				@include border-radius-b();
 			}
 			h6, a {
-				@include padding-vertical($space-small);
+				@include padding-v($space-small);
 			}
 			h6 {
 				@include margin-no();
@@ -75,7 +76,7 @@ Author: Chris Humboldt
 			}
 		}
 
-		&.close-list  {
+		&.mod-menu-close-list  {
 			@include width(100%);
          @include transform-translate-3d(0px, 180px, 0px);
          @include animate(all, 0.3s, 0.2s);

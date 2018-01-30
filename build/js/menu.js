@@ -1,135 +1,145 @@
-/*
-Author: Chris Humboldt
-*/
-// Extend Rocket
+/**
+@author Chris Humboldt
+**/
+
+// Set the defaults
 Rocket.defaults.menu = {
-    closeText: 'close',
-    reveal: 'left',
-    type: 'slide'
+   closeText: 'close',
+   reveal: 'left',
+   type: 'slide'
 };
+
 // Module
-var RockMod_Menu;
-(function (RockMod_Menu) {
-    // Variables
-    var _RD = Rocket.defaults.menu;
-    var reveals = ['_r-left', '_r-right'];
-    var types = ['_t-mini', '_t-slide'];
-    // Functions
-    var menu = {
-        close: function (callback, overlayHide) {
-            if (callback === void 0) { callback = null; }
-            if (overlayHide === void 0) { overlayHide = true; }
-            var openMenu = Rocket.dom.element('.rocket-menu._reveal');
-            Rocket.classes.remove(Rocket.dom.html, 'rme-reveal');
-            if (Rocket.exists(openMenu) && Rocket.is.element(openMenu)) {
-                if (overlayHide) {
-                    Rocket.overlay.hide();
-                }
-                ;
-                Rocket.classes.remove(openMenu, '_reveal');
+const RockMod_Menu = (() => {
+   const reveals = ['_mod-reveal-left', '_mod-reveal-right'];
+   const menuStore = {};
+   const types = ['_mod-type-mini', '_mod-type-slide'];
+
+   // Methods
+   function globalSetup() {
+      if (Rocket.has.class(Rocket.dom.html, 'mod-menu-listener')) {
+         return;
+      } else {
+         Rocket.classes.add(Rocket.dom.html, 'mod-menu-listener');
+      }
+
+      // Click listener
+      Rocket.event.add(Rocket.dom.element('.mod-menu-listener'), 'click', (event) => {
+         const target = event.target;
+         const classNames = (event.target.getAttribute('class')) ? event.target.getAttribute('class').split(' ') : [];
+         const id = (event.target.getAttribute('id')) ? event.target.getAttribute('id') : '';
+
+         if (classNames.indexOf('mod-menu-close-link') > -1) {
+            event.preventDefault();
+            menuClose();
+         } else if (classNames.indexOf('mod-menu-link') > -1 || id === 'rocket-overlay') {
+            menuClose();
+         } else if (menuStore[`#${id}`]) {
+            event.preventDefault();
+            menuOpen(menuStore[`#${id}`]);
+         } else {
+            for (let i = 0, len = classNames.length; i < len; i++) {
+               if (menuStore[`.${classNames[i]}`]) {
+                  event.preventDefault();
+                  menuOpen(`.${classNames[i]}`);
+                  break;
+               }
             }
-            if (Rocket.is.function(callback)) {
-                return callback();
+         }
+      });
+   };
+
+   function menuClose({ callback = undefined, overlayHide = true } = {}) {
+      const openMenu = Rocket.dom.element('.mod-menu.is-active');
+
+      Rocket.classes.remove(Rocket.dom.html, 'mod-menu-is-active');
+      if (Rocket.is.element(openMenu)) {
+         if (overlayHide) { Rocket.overlay.hide(); }
+         Rocket.state.clear(openMenu);
+      }
+
+      if (Rocket.is.function(callback)) { return callback(); }
+   }
+
+   function menuOpen(menuRef) {
+      const menu = Rocket.dom.element(menuRef);
+      const openMenu = Rocket.dom.element('.mod-menu.is-active');
+
+      if (menu !== openMenu) {
+         menuClose({callback: () => {
+            Rocket.overlay.show();
+            Rocket.classes.add(Rocket.dom.html, 'mod-menu-is-active');
+            Rocket.state.add(menu, 'active');
+         }});
+      } else {
+         menuClose();
+      }
+   }
+
+   function init({
+      closeText = Rocket.defaults.menu.closeText,
+      reveal = Rocket.defaults.menu.reveal,
+      target = undefined,
+      trigger = undefined,
+      type = Rocket.defaults.menu.type
+   }) {
+      const menu = Rocket.dom.element(target);
+
+      // Catch
+      if (!menu || !trigger) { return; }
+
+      // Continue
+      menuStore[trigger] = target;
+      Rocket.classes.remove(menu, reveals.concat(types));
+      Rocket.classes.add(menu.querySelectorAll('a'), 'mod-menu-link');
+
+      switch (type) {
+         case 'mini':
+            Rocket.classes.add(menu, `mod-menu _mod-type-${type}`);
+
+            if (!Rocket.exists(menu.querySelector('.mod-menu-close-link'))) {
+               let closeUL = document.createElement('ul');
+               let closeLI = document.createElement('li');
+               let closeLink = document.createElement('a');
+
+               Rocket.classes.add(closeUL, 'mod-menu-close-list');
+
+               Rocket.classes.add(closeLink, 'mod-menu-close-link');
+               closeLink.href = '';
+               closeLink.innerHTML = closeText;
+
+               closeLI.appendChild(closeLink);
+               closeUL.appendChild(closeLI);
+               menu.appendChild(closeUL);
             }
-        },
-        globalSetup: function () {
-            Rocket.event.add(Rocket.dom.element('#rocket-overlay'), 'click', menu.close);
-        },
-        setup: function (options) {
-            var thisMenu = Rocket.dom.element(options.target);
-            var triggers = Rocket.dom.select(options.triggers);
-            // Catch
-            if (!Rocket.is.element(thisMenu) || triggers.length < 1 || types.indexOf("_t-" + options.type) < 0) {
-                return false;
+            break;
+
+         default:
+            Rocket.classes.add(menu, `mod-menu _mod-type-${type} _mod-reveal-${reveal}`);
+
+            if (!Rocket.exists(menu.querySelector('.mod-menu-close-link'))) {
+               let closeLink = document.createElement('a');
+
+               Rocket.classes.add(closeLink, 'mod-menu-close-link');
+               closeLink.href = '';
+               closeLink.innerHTML = closeText;
+               menu.appendChild(closeLink);
             }
-            // Continue
-            function menuShow(event) {
-                if (event === void 0) { event = null; }
-                if (event) {
-                    event.preventDefault();
-                }
-                var openMenu = Rocket.dom.element('.rocket-menu._reveal');
-                if (thisMenu !== openMenu) {
-                    menu.close(function () {
-                        Rocket.overlay.show();
-                        Rocket.classes.add(Rocket.dom.html, 'rme-reveal');
-                        Rocket.classes.add(thisMenu, '_reveal');
-                    }, false);
-                }
-                else {
-                    menu.close();
-                }
-            }
-            Rocket.classes.remove(thisMenu, reveals.concat(types));
-            switch (options.type) {
-                case 'mini':
-                    Rocket.classes.add(thisMenu, "rocket-menu _t-" + options.type);
-                    // Close link
-                    if (!Rocket.exists(thisMenu.querySelector('a.rme-close-link'))) {
-                        var closeUL = document.createElement('ul');
-                        var closeLI = document.createElement('li');
-                        var closeLink = document.createElement('a');
-                        Rocket.classes.add(closeUL, 'close-list');
-                        Rocket.classes.add(closeLink, 'rme-close-link');
-                        closeLink.href = '';
-                        closeLink.innerHTML = options.closeText;
-                        closeLI.appendChild(closeLink);
-                        closeUL.appendChild(closeLI);
-                        thisMenu.appendChild(closeUL);
-                    }
-                    break;
-                case 'slide':
-                    Rocket.classes.add(thisMenu, "rocket-menu _t-" + options.type + " _r-" + options.reveal);
-                    // Close link
-                    if (!Rocket.exists(thisMenu.querySelector('a.rme-close-link'))) {
-                        var closeLink = document.createElement('a');
-                        Rocket.classes.add(closeLink, 'rme-close-link');
-                        closeLink.href = '';
-                        closeLink.innerHTML = options.closeText;
-                        thisMenu.appendChild(closeLink);
-                    }
-                    break;
-            }
-            // Menu links
-            var menuLinks = thisMenu.querySelectorAll('a');
-            for (var _i = 0, menuLinks_1 = menuLinks; _i < menuLinks_1.length; _i++) {
-                var menuLink = menuLinks_1[_i];
-                Rocket.event.add(menuLink, 'click', function (event) {
-                    if (Rocket.has.class(event.currentTarget, 'rme-close-link')) {
-                        event.preventDefault();
-                    }
-                    menu.close();
-                });
-            }
-            for (var _a = 0, triggers_1 = triggers; _a < triggers_1.length; _a++) {
-                var trigger = triggers_1[_a];
-                Rocket.event.add(trigger, 'click', menuShow);
-            }
-            return {
-                close: menu.close,
-                menu: thisMenu,
-                show: menuShow
-            };
-        }
-    };
-    // Initialiser
-    function init(uOptions) {
-        // Options
-        if (!Rocket.is.object(uOptions)) {
-            uOptions = {};
-        }
-        var options = {
-            closeText: Rocket.helper.setDefault(uOptions.closeText, _RD.closeText),
-            reveal: Rocket.helper.setDefault(uOptions.reveal, _RD.reveal),
-            triggers: Rocket.helper.setDefault(uOptions.triggers, ''),
-            target: Rocket.helper.setDefault(uOptions.target, ''),
-            type: Rocket.helper.setDefault(uOptions.type, _RD.type)
-        };
-        return menu.setup(options);
-    }
-    RockMod_Menu.init = init;
-    // Menu setup
-    menu.globalSetup();
-})(RockMod_Menu || (RockMod_Menu = {}));
-// Bind to Rocket
+      }
+
+      return {
+         menu,
+         close: menuClose,
+         open: () => {
+            menuOpen(target);
+         }
+      };
+   }
+
+   // Execute
+   globalSetup();
+   return {init};
+})();
+
+// Module execution
 Rocket.menu = RockMod_Menu.init;

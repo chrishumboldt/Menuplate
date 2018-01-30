@@ -1,6 +1,6 @@
 {
   "name": "rocket-menu",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "A menu module.",
   "main": "index.html",
   "repository": {
@@ -22,9 +22,9 @@
   "homepage": "https://github.com/chrishumboldt/Rocket-Menu#readme",
   "devDependencies": {
     "rocket-demo": "^2.0.1",
-    "rocket-propel": "^3.0.3"
+    "rocket-propel": "^3.1.1"
   },
   "dependencies": {
-    "rocket-tools": "^1.14.2"
+    "rocket-tools": "^1.16.3"
   }
 }

@@ -2,8 +2,8 @@
 Author: Chris Humboldt
 */
 
-@mixin rocket-menu-css() {
-   @include rocket-menu-setup;
-	@include rocket-menu-mini;
-   @include rocket-menu-slide;
+@mixin mod-menu-css() {
+   @include mod-menu-setup;
+	@include mod-menu-mini;
+   @include mod-menu-slide;
 }

@@ -15,7 +15,7 @@ Install via NPM.
 npm install rocket-menu
 ```
 
-**NOTE** that this module has a dependency [Rocket Tools (21kb)](https://github.com/chrishumboldt/Rocket-Tools) which will automatically be installed as well.
+**NOTE** that this module has a dependency [Rocket Tools (28kb)](https://github.com/chrishumboldt/Rocket-Tools) which will automatically be installed as well.
 
 Start by including the necessary files.
 
@@ -36,7 +36,7 @@ There are two different menu types and all use the same HTML. You require the tr
 ```html
 <a id="menu-trigger" href>Open Menu</a>
 
-<div id="menu-example" class="rocket-menu">
+<div id="menu-example" class="mod-menu">
    <ul>
       <li><h6>Menu</h6></li>
       <li><a href="#">Link One</a></li>
@@ -53,8 +53,8 @@ Use the following example to trigger the menu module.
 
 ```js
 Rocket.menu({
-   triggers: '#menu-trigger',
-   target: '#menu-example'
+   target: '#menu-example',
+   trigger: '#menu-trigger'
 });
 ```
 
@@ -62,18 +62,19 @@ Rocket.menu({
 Name | Default | Options | Description
 ---- | ---- | ---- | ----
 `closeText` | `close` | | You can decide what you want the close text to say.
-`reveal` | `left` | `left` `right` | Set the direction from which the menu appears. **NOTE** that this only applies to the
-`triggers` | | | Set the element that will trigger the menu.
-`type` | `slide` | `mini` `slide` | This determines the type of menu you want to use. slide menu type.
+`reveal` | `left` | `left` `right` | Set the direction from which the menu appears. **NOTE** that this only applies to the slide menu.
+`target` | | | Set the menu that you want to open.
+`trigger` | | | Set the elements that will trigger the menu.
+`type` | `slide` | `mini` `slide` | This determines the type of menu you want to use.
 
 #### Methods
-You can also manually execute certain methods once the menu has been initialized.
+You can also manually execute certain methods once the menu has been initialised.
 
 ```js
 // Initialize a menu
-let menu = Rocket.menu({
-   triggers: '#menu-trigger',
-   target: '#menu-example'
+const menu = Rocket.menu({
+   target: '#menu-example',
+   trigger: '#menu-trigger'
 });
 
 // Show the menu
@@ -99,7 +100,7 @@ Twitter: <a href="https://twitter.com/chrishumboldt">twitter.com/chrishumboldt</
 GitHub <a href="https://github.com/chrishumboldt">github.com/chrishumboldt</a><br>
 
 ## Copyright and License
-Copyright 2017 Rocket Project
+Copyright 2018 Rocket Project
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

@@ -26,7 +26,7 @@
 <pre class="prettyprint linenums">
 npm install rocket-menu
 </pre>
-         <p class="note">Note that this module has a dependency <a href="https://github.com/chrishumboldt/Rocket-Tools" class="link" target="_blank">Rocket Tools (21kb)</a> which will automatically be installed as well.</p>
+         <p class="note">Note that this module has a dependency <a href="https://github.com/chrishumboldt/Rocket-Tools" class="link" target="_blank">Rocket Tools (28kb)</a> which will automatically be installed as well.</p>
       	<p>Start by including the necessary files.</p>
 <pre class="prettyprint linenums">
 &lt;head&gt;
@@ -44,7 +44,7 @@ npm install rocket-menu
 <pre class="prettyprint linenums">
 &lt;a id="menu-link" href>Open Menu&lt;/a&gt;
 
-&lt;div id="menu" class="rocket-menu"&gt;
+&lt;div id="menu" class="mod-menu"&gt;
    &lt;ul&gt;
       &lt;li>&lt;h6&gt;Menu&lt;/h6>&lt;/li&gt;
       &lt;li>&lt;a href=&quot;#&quot;&gt;Link One&lt;/a&gt;&lt;/li&gt;
@@ -61,18 +61,18 @@ npm install rocket-menu
 <pre class="prettyprint linenums">
 &lt;script&gt;
 Rocket.menu({
-   triggers: '#menu-link',
-   target: '#menu'
+   target: '#menu',
+   trigger: '#menu-link'
 });
 &lt;/script&gt;
 </pre>
 	      <br>
 	      <h4>Working Example</h4>
 	      <a id="menu-link-1" class="link" href>Open Slide Menu</a>
-	      <div id="menu-slide" class="rocket-menu">
+	      <div id="menu-slide" class="mod-menu">
 	         <ul>
 	            <li><h6>Slide Menu</h6></li>
-	            <li><a href="#">Link One</a></li>
+	            <li><a href="#" class="one two">Link One</a></li>
 	            <li><a href="#">Link Two</a></li>
 	            <li><a href="#">Link Three</a></li>
 	            <li><a href="#">Link Four</a></li>
@@ -81,7 +81,7 @@ Rocket.menu({
 	      </div>
          <br>
 	      <a id="menu-link-2" class="link" href>Open Mini Menu</a>
-	      <div id="menu-mini" class="rocket-menu">
+	      <div id="menu-mini" class="mod-menu">
 	         <ul>
 	            <li><a href="#">Link One</a></li>
 	            <li><a href="#">Link Two</a></li>
@@ -108,16 +108,16 @@ Rocket.menu({
    <!-- Scripts -->
    <script src="node_modules/rocket-demo/js/demo.min.js"></script>
    <script src="node_modules/rocket-tools/js/tools.min.js"></script>
-   <script src="js/menu.min.js"></script>
+   <script src="build/js/menu.js"></script>
    <script>
-   var myMenu = Rocket.menu({
-      triggers: '#menu-link-1',
-      target: '#menu-slide'
+   Rocket.menu({
+      target: '#menu-slide',
+      trigger: '#menu-link-1'
    });
 
    Rocket.menu({
-      triggers: '#menu-link-2',
       target: '#menu-mini',
+      trigger: '#menu-link-2',
       type: 'mini'
    });
    </script>

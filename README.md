@@ -1,3 +1,5 @@
+# NO LONGER SUPPORTED
+
 # Rocket Menu
 A Javascript menu module.
 
